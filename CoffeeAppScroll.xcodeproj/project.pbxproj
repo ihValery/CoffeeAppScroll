@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		801320D1291C41BB00A11FDE /* Coffee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801320D0291C41BB00A11FDE /* Coffee.swift */; };
 		8099BC5B291C0A430015DE6E /* CoffeeAppScrollApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8099BC5A291C0A430015DE6E /* CoffeeAppScrollApp.swift */; };
 		8099BC5D291C0A430015DE6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8099BC5C291C0A430015DE6E /* ContentView.swift */; };
 		8099BC5F291C0A440015DE6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8099BC5E291C0A440015DE6E /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		801320D0291C41BB00A11FDE /* Coffee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coffee.swift; sourceTree = "<group>"; };
 		8099BC57291C0A430015DE6E /* CoffeeAppScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeAppScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8099BC5A291C0A430015DE6E /* CoffeeAppScrollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeAppScrollApp.swift; sourceTree = "<group>"; };
 		8099BC5C291C0A430015DE6E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +34,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		801320CE291C418D00A11FDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		801320CF291C419800A11FDE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				801320D0291C41BB00A11FDE /* Coffee.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8099BC4E291C0A430015DE6E = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +68,8 @@
 		8099BC59291C0A430015DE6E /* CoffeeAppScroll */ = {
 			isa = PBXGroup;
 			children = (
+				801320CF291C419800A11FDE /* Model */,
+				801320CE291C418D00A11FDE /* View */,
 				8099BC5A291C0A430015DE6E /* CoffeeAppScrollApp.swift */,
 				8099BC5C291C0A430015DE6E /* ContentView.swift */,
 				8099BC5E291C0A440015DE6E /* Assets.xcassets */,
@@ -139,6 +158,7 @@
 			files = (
 				8099BC5D291C0A430015DE6E /* ContentView.swift in Sources */,
 				8099BC5B291C0A430015DE6E /* CoffeeAppScrollApp.swift in Sources */,
+				801320D1291C41BB00A11FDE /* Coffee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

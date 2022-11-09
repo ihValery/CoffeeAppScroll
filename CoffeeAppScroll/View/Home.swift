@@ -108,7 +108,14 @@ struct CoffeView: View {
                 //Updating anchor based on the current card scale
                 .scaleEffect(reduceScale < 0 ? 0.001 : reduceScale,
                              anchor: .init(x: 0.5, y: 1 - (currentCardScale / 2.4)))
-            
+                //When it's coming from bottom animation the scale from large to actual
+                //Когда он идет от нижней анимации, масштаб от большого к реальному
+                .scaleEffect(offset > 0 ? 1 + currentCardScale : 1, anchor: .top)
+                //To remove the excess next view using offset to move the view in real time
+                //Для удаления лишнего следующего вида с использованием смещения для перемещения вида в реальном времени
+                .offset(y: offset > 0 ? currentCardScale * 200 : 0)
+                //Making it more compact
+                .offset(y: currentCardScale * -130)
             
             Text("\(offset)")
         }

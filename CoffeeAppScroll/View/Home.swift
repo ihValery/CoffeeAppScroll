@@ -26,7 +26,19 @@ struct Home: View {
             //Since Card Size is the size of the Screen Width
             let cardSize = size.width
             
-            VStack {
+            //Gradient Background
+            LinearGradient(colors: [.clear,
+                                    Color("Brown").opacity(0.2),
+                                    Color("Brown").opacity(0.45),
+                                    Color("Brown")],
+                           startPoint: .top, endPoint: .bottom)
+//            .frame(height: 300)
+            .frame(maxHeight: .infinity, alignment: .bottom)
+            .ignoresSafeArea()
+            
+            HeaderText()
+            
+            VStack(spacing: 0) {
                 ForEach(coffees) { coffee in
                     CoffeView(coffee: coffee, size: size)
                 }
@@ -67,6 +79,30 @@ struct Home: View {
         )
         .preferredColorScheme(.light)
     }
+    
+    @ViewBuilder func HeaderText() -> some View {
+        GeometryReader {
+            let size = $0.size
+            
+            HStack(spacing: 0) {
+                ForEach(coffees) { coffee in
+                    VStack(spacing: 15) {
+                        Text(coffee.title)
+                            .font(.title.bold())
+                            .multilineTextAlignment(.center)
+                        
+                        Text(coffee.price)
+                            .font(.title)
+                    }
+                    .frame(width: size.width)
+                }
+            }
+            .offset(x: currentIndex * -size.width)
+            .animation(.interactiveSpring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.8),
+                       value: currentIndex)
+        }
+        .padding(15)
+    }
 }
 
 //MARK: - PreviewProvider
@@ -87,9 +123,13 @@ struct CoffeView: View {
     //MARK: Body
     
     var body: some View {
-        let cardSize = size.width
+        //If you want to decrease the size of the image, then change it's card size
+        //Если вы хотите уменьшить размер изображения, измените размер карты.
+        let cardSize = size.width * 1
         //Since i want to show max card on the display
-        let maxCarsdDisplaySize = size.width * 3
+        //Since we used scalling to decrease the view size add extra on
+        //Так как мы использовали скаллинг для уменьшения размера вида, добавьте еще по
+        let maxCarsdDisplaySize = size.width * 4
         
         GeometryReader { proxy in
             let _size = proxy.size
@@ -104,15 +144,20 @@ struct CoffeView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: _size.width, height: _size.height)
-                //To avoid warning
-                //Updating anchor based on the current card scale
+            //To avoid warning
+            //Updating anchor based on the current card scale
                 .scaleEffect(reduceScale < 0 ? 0.001 : reduceScale,
                              anchor: .init(x: 0.5, y: 1 - (currentCardScale / 2.4)))
-            
-            
-            Text("\(offset)")
+            //When it's coming from bottom animation the scale from large to actual
+            //Когда он идет от нижней анимации, масштаб от большого к реальному
+                .scaleEffect(offset > 0 ? 1 + currentCardScale : 1, anchor: .top)
+            //To remove the excess next view using offset to move the view in real time
+            //Для удаления лишнего следующего вида с использованием смещения для перемещения вида в реальном времени
+                .offset(y: offset > 0 ? currentCardScale * 200 : 0)
+            //Making it more compact
+                .offset(y: currentCardScale * -130)
         }
-        .frame(height: size.width)
+        .frame(height: cardSize)
     }
 }
 
